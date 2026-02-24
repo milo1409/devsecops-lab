@@ -10,3 +10,5 @@ db.sqlite3
 # Local artifacts
 *.tar
 *.tgz
+devsecops-demo.tar
+*.tar
