@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: django-demo
-        image: devsecops-demo:latest
-        imagePullPolicy: Never
+        image: ghcr.io/milo1409/devsecops-lab/devsecops-demo:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080

@@ -1,0 +1,20 @@
+controller:
+  JCasC:
+    enabled: false
+  sidecars:
+    configAutoReload:
+      enabled: false
+
+  additionalVolumes:
+    - name: kubectl-host
+      hostPath:
+        path: /opt/tools/kubectl
+        type: File
+
+  additionalVolumeMounts:
+    - name: kubectl-host
+      mountPath: /usr/local/bin/kubectl
+      readOnly: true
+
+persistence:
+  enabled: false

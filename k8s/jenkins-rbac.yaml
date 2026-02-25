@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: jenkins-deployer
+  namespace: devsecops
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: jenkins-deployer-role
+  namespace: devsecops
+rules:
+- apiGroups: ["", "apps"]
+  resources: ["deployments","pods","services","endpoints","configmaps","secrets"]
+  verbs: ["get","list","watch","create","update","patch","delete"]
+- apiGroups: ["monitoring.coreos.com"]
+  resources: ["servicemonitors"]
+  verbs: ["get","list","watch","create","update","patch","delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: jenkins-deployer-rb
+  namespace: devsecops
+subjects:
+- kind: ServiceAccount
+  name: jenkins-deployer
+  namespace: devsecops
+roleRef:
+  kind: Role
+  name: jenkins-deployer-role
+  apiGroup: rbac.authorization.k8s.io

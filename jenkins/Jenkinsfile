@@ -1,39 +1,52 @@
 pipeline {
-  agent any
+agent any
 
-  environment {
-    KUBECTL = "/tmp/kubectl"
+environment {
+IMAGE = "ghcr.io/milo1409/devsecops-lab/devsecops-demo"
+TAG = "${BUILD_NUMBER}"
+}
+
+stages {
+
+stage('Checkout') {
+  steps {
+    checkout scm
   }
+}
 
-  stages {
-
-    stage('Checkout') {
-      steps {
-        checkout scm
-      }
-    }
-
-    stage('Install kubectl') {
-      steps {
-        sh '''
-          curl -L -o /tmp/kubectl https://dl.k8s.io/release/v1.29.0/bin/linux/amd64/kubectl
-          chmod +x /tmp/kubectl
-          /tmp/kubectl version --client
-        '''
-      }
-    }
-
-    stage('Deploy to Kubernetes') {
-      steps {
-        sh '''
-          ${KUBECTL} -n devsecops apply -f k8s/service.yaml
-          ${KUBECTL} -n devsecops apply -f k8s/deployment.yaml
-          ${KUBECTL} -n monitoring apply -f k8s/servicemonitor.yaml
-          ${KUBECTL} -n devsecops rollout restart deploy django-demo
-          ${KUBECTL} -n devsecops rollout status deploy django-demo --timeout=120s
-        '''
-      }
-    }
-
+stage('Build Docker Image') {
+  steps {
+    sh '''
+    docker build -t $IMAGE:$TAG .
+    docker tag $IMAGE:$TAG $IMAGE:latest
+    '''
   }
+}
+
+stage('Push Image to GHCR') {
+  steps {
+    withCredentials([usernamePassword(
+      credentialsId: 'ghcr-creds',
+      usernameVariable: 'USER',
+      passwordVariable: 'TOKEN'
+    )]) {
+      sh '''
+      echo $TOKEN | docker login ghcr.io -u $USER --password-stdin
+      docker push $IMAGE:$TAG
+      docker push $IMAGE:latest
+      '''
+    }
+  }
+}
+
+stage('Deploy to Kubernetes') {
+  steps {
+    sh '''
+    /tmp/kubectl -n devsecops set image deployment/django-demo django-demo=$IMAGE:latest
+    /tmp/kubectl -n devsecops rollout status deployment django-demo
+    '''
+  }
+}
+
+}
 }
