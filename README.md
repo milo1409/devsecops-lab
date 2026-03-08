@@ -62,17 +62,17 @@ El pipeline ejecuta las siguientes tareas:
 4. Construir imagen Docker
 5. Publicar la imagen en el registry
 
-Archivo de configuración:
+Archivo de configuración: .github/workflows/ci.yml
 
 ### Evidencia pipeline CI
 
-![Pipeline CI](evidencias/ejecucion pipeline ci github actions.png)
+![Pipeline CI](evidencias/ejecucion_pipeline_ci_github_actions.png)
 
 ---
 
 ## Entrega Continua (Jenkins)
 
-El despliegue continuo se realiza utilizando **Jenkins**, que ejecuta el pipeline definido en:
+El despliegue continuo se realiza utilizando **Jenkins**, que ejecuta el pipeline definido en: jenkins/Jenkinsfile
 
 El pipeline realiza:
 
@@ -83,15 +83,25 @@ El pipeline realiza:
 
 ### Evidencia pipeline CD
 
-![Pipeline CD](evidencias/ejecucion pipeline cd jenkins.png)
+![Pipeline CD](evidencias/ejecucion_pipeline_cd_jenkins.png)
 
-![Pipeline CD Success](evidencias/despliege sonar success jenkins.png)
+![Pipeline CD Success](evidencias/despliege_sonar_success_jenkins.png)
 
 ---
 
 # Despliegue en Kubernetes
 
-La aplicación se despliega en Kubernetes utilizando los archivos ubicados en:
+La aplicación se despliega en Kubernetes utilizando los archivos ubicados en: k8s/
+
+
+Archivos principales:
+
+deployment.yaml
+service.yaml
+namespace.yaml
+ingress.yaml
+servicemonitor.yaml
+
 
 ### Evidencia configuración Kubernetes
 
@@ -103,7 +113,7 @@ La aplicación se despliega en Kubernetes utilizando los archivos ubicados en:
 
 Para integrar prácticas DevSecOps se utilizó **Snyk**, que analiza vulnerabilidades en las dependencias del proyecto.
 
-El análisis se realiza sobre:
+El análisis se realiza sobre: app/requirements.txt
 
 Snyk detecta vulnerabilidades como:
 
@@ -119,7 +129,7 @@ Snyk detecta vulnerabilidades como:
 
 ### Recomendación de mejoras
 
-![Corrección vulnerabilidades](evidencias/correccion de mejora synk.png)
+![Corrección vulnerabilidades](evidencias/correccion_de_mejora_synk.png)
 
 ---
 
@@ -178,7 +188,7 @@ Grafana permite visualizar métricas del clúster Kubernetes y del sistema.
 
 # Evidencias del laboratorio
 
-Las evidencias del laboratorio se encuentran en:
+Las evidencias del laboratorio se encuentran en: /evidencias
 
 Incluyen:
 
