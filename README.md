@@ -1,0 +1,213 @@
+# DevSecOps CI/CD Pipeline Laboratory
+
+## Descripción del proyecto
+
+Este repositorio contiene la implementación de un laboratorio de **DevSecOps**, cuyo objetivo es demostrar la integración de prácticas de **Integración Continua (CI)**, **Entrega Continua (CD)**, **seguridad del software** y **monitoreo** dentro del ciclo de vida de desarrollo de una aplicación web.
+
+El laboratorio implementa un pipeline completo que permite:
+
+- Construir una aplicación web basada en **Django**
+- Ejecutar integración continua con **GitHub Actions**
+- Realizar despliegue continuo con **Jenkins**
+- Detectar vulnerabilidades de dependencias con **Snyk**
+- Desplegar la aplicación en **Kubernetes**
+- Monitorear la aplicación con **Prometheus**
+- Visualizar métricas con **Grafana**
+
+Este enfoque permite mejorar la **seguridad, automatización y eficiencia operativa** del proceso de desarrollo de software.
+
+---
+
+# Enlace al repositorio
+
+Repositorio del proyecto:
+
+https://github.com/milo1409/devsecops-lab
+
+---
+
+# Arquitectura del laboratorio
+
+Flujo general del pipeline DevSecOps:
+
+---
+
+# Tecnologías utilizadas
+
+| Herramienta | Propósito |
+|-------------|-----------|
+| GitHub | Gestión del código fuente |
+| GitHub Actions | Integración Continua |
+| Jenkins | Entrega Continua |
+| Docker | Contenerización |
+| Kubernetes (k3s) | Orquestación |
+| Snyk | Análisis de seguridad |
+| Prometheus | Recolección de métricas |
+| Grafana | Visualización de métricas |
+| Django | Framework web |
+
+---
+
+# Pipeline CI/CD
+
+## Integración Continua (GitHub Actions)
+
+La integración continua se ejecuta automáticamente cuando se realiza un **push al repositorio**.
+
+El pipeline ejecuta las siguientes tareas:
+
+1. Clonar el repositorio
+2. Instalar dependencias
+3. Ejecutar análisis de seguridad con Snyk
+4. Construir imagen Docker
+5. Publicar la imagen en el registry
+
+Archivo de configuración:
+
+### Evidencia pipeline CI
+
+![Pipeline CI](evidencias/ejecucion pipeline ci github actions.png)
+
+---
+
+## Entrega Continua (Jenkins)
+
+El despliegue continuo se realiza utilizando **Jenkins**, que ejecuta el pipeline definido en:
+
+El pipeline realiza:
+
+1. Clonación del repositorio
+2. Construcción de la imagen Docker
+3. Despliegue en Kubernetes
+4. Exposición del servicio
+
+### Evidencia pipeline CD
+
+![Pipeline CD](evidencias/ejecucion pipeline cd jenkins.png)
+
+![Pipeline CD Success](evidencias/despliege sonar success jenkins.png)
+
+---
+
+# Despliegue en Kubernetes
+
+La aplicación se despliega en Kubernetes utilizando los archivos ubicados en:
+
+### Evidencia configuración Kubernetes
+
+![Configuración Kubernetes](evidencias/configuracionKubernetes.png)
+
+---
+
+# Seguridad del software
+
+Para integrar prácticas DevSecOps se utilizó **Snyk**, que analiza vulnerabilidades en las dependencias del proyecto.
+
+El análisis se realiza sobre:
+
+Snyk detecta vulnerabilidades como:
+
+- SQL Injection
+- Denial of Service
+- Resource Exhaustion
+- Command Injection
+- HTTP Request Smuggling
+
+### Evidencia análisis de seguridad
+
+![Reporte vulnerabilidades](evidencias/analisis_vulneravilidades_synk.png)
+
+### Recomendación de mejoras
+
+![Corrección vulnerabilidades](evidencias/correccion de mejora synk.png)
+
+---
+
+# Monitoreo del sistema
+
+El monitoreo se implementó utilizando:
+
+- **Prometheus**
+- **Grafana**
+
+Prometheus recolecta métricas de:
+
+- CPU
+- Memoria
+- Pods
+- Servicios
+- Estado del clúster
+
+---
+
+# Dashboards de Grafana
+
+Grafana permite visualizar métricas del clúster Kubernetes y del sistema.
+
+### Dashboard principal
+
+![Dashboard Grafana](evidencias/dasboard grafana.png)
+
+---
+
+### Uso de CPU y recursos
+
+![CPU y Pods](evidencias/cpu + pods.png)
+
+---
+
+### Monitoreo de pods
+
+![Monitoreo Pods](evidencias/motitoreo pods.png)
+
+---
+
+# Flujo completo del laboratorio
+
+1. El desarrollador realiza cambios en el código.
+2. Se realiza un **push al repositorio GitHub**.
+3. GitHub Actions ejecuta el pipeline de **CI**.
+4. Se ejecuta el análisis de seguridad con **Snyk**.
+5. Se construye la imagen Docker.
+6. Jenkins ejecuta el pipeline de **CD**.
+7. La aplicación se despliega en Kubernetes.
+8. Prometheus recolecta métricas del sistema.
+9. Grafana muestra dashboards de monitoreo.
+
+---
+
+# Evidencias del laboratorio
+
+Las evidencias del laboratorio se encuentran en:
+
+Incluyen:
+
+- Pipeline CI ejecutándose
+- Pipeline CD ejecutándose
+- Dashboards de Grafana
+- Informe de seguridad con Snyk
+- Configuración de Kubernetes
+
+---
+
+# Reflexión sobre eficiencia operativa
+
+La implementación de prácticas DevSecOps permite mejorar significativamente la eficiencia operativa del proceso de desarrollo.
+
+Entre los principales beneficios se encuentran:
+
+- Automatización de integración y despliegue
+- Identificación temprana de vulnerabilidades
+- Monitoreo continuo del sistema
+- Reducción de errores manuales
+- Mayor confiabilidad en los despliegues
+
+La integración de **CI/CD, seguridad automatizada y monitoreo** permite construir sistemas más seguros, observables y escalables.
+
+---
+
+# Conclusión
+
+Este laboratorio demuestra cómo implementar un pipeline DevSecOps completo integrando automatización, seguridad y monitoreo.
+
+La solución permite mejorar la calidad del software, detectar vulnerabilidades tempranamente y monitorear el comportamiento del sistema en producción.
