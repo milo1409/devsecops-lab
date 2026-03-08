@@ -85,8 +85,6 @@ El pipeline realiza:
 
 ![Pipeline CD](evidencias/ejecucion_pipeline_cd_jenkins.png)
 
-![Pipeline CD Success](evidencias/despliege_sonar_success_jenkins.png)
-
 ---
 
 # Despliegue en Kubernetes
@@ -156,19 +154,19 @@ Grafana permite visualizar métricas del clúster Kubernetes y del sistema.
 
 ### Dashboard principal
 
-![Dashboard Grafana](evidencias/dasboard grafana.png)
+![Dashboard Grafana](evidencias/dasboard_grafana.png)
 
 ---
 
 ### Uso de CPU y recursos
 
-![CPU y Pods](evidencias/cpu + pods.png)
+![CPU y Pods](evidencias/cpu_+_pods.png)
 
 ---
 
 ### Monitoreo de pods
 
-![Monitoreo Pods](evidencias/motitoreo pods.png)
+![Monitoreo Pods](evidencias/motitoreo_pods.png)
 
 ---
 
