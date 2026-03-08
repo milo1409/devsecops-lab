@@ -32,25 +32,18 @@ Flujo general del pipeline DevSecOps:
 
 GitHub Repository
 │
-▼
 GitHub Actions (CI)
 │
-▼
 Security Scan (Snyk)
 │
-▼
 Docker Build
 │
-▼
 Jenkins Pipeline (CD)
 │
-▼
 Kubernetes Deployment
 │
-▼
 Prometheus Monitoring
 │
-▼
 Grafana Dashboards
 
 ---
