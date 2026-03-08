@@ -30,6 +30,29 @@ https://github.com/milo1409/devsecops-lab
 
 Flujo general del pipeline DevSecOps:
 
+GitHub Repository
+│
+▼
+GitHub Actions (CI)
+│
+▼
+Security Scan (Snyk)
+│
+▼
+Docker Build
+│
+▼
+Jenkins Pipeline (CD)
+│
+▼
+Kubernetes Deployment
+│
+▼
+Prometheus Monitoring
+│
+▼
+Grafana Dashboards
+
 ---
 
 # Tecnologías utilizadas
