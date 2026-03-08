@@ -202,7 +202,7 @@ Estas reglas permiten detectar problemas de:
 
 ### Evidencia de reglas en Prometheus
 
-![Reglas Prometheus](evidencias/reglas_prometheus.png)
+![Reglas Prometheus](evidencias/reglas_prometeus.png)
 
 ---
 
