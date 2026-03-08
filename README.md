@@ -100,6 +100,7 @@ El pipeline realiza:
 ### Evidencia pipeline CD
 
 ![Pipeline CD](evidencias/ejecucion_pipeline_cd_jenkins.png)
+![Pipeline_monitoreo CD](evidencias/cd_monitoreo_jenkins.png)
 
 ---
 
@@ -163,6 +164,70 @@ Prometheus recolecta métricas de:
 - Estado del clúster
 
 ---
+
+# Monitoreo con Prometheus
+
+Para la observabilidad del sistema se implementó **Prometheus**, encargado de recolectar métricas del clúster Kubernetes y de la aplicación desplegada.
+
+Prometheus permite:
+
+- Recolectar métricas de los pods
+- Monitorear servicios de Kubernetes
+- Generar reglas de alerta
+- Exponer métricas para Grafana
+
+---
+
+## Estado de reglas de alerta
+
+Prometheus permite configurar reglas de alerta que detectan fallos o comportamientos anómalos en los servicios del clúster.
+
+Entre las alertas configuradas se encuentran:
+
+- AlertmanagerFailedReload
+- AlertmanagerMembersInconsistent
+- AlertmanagerFailedToSendAlerts
+- AlertmanagerClusterFailedToSendAlerts
+- AlertmanagerConfigInconsistent
+- AlertmanagerClusterDown
+- AlertmanagerClusterCrashLooping
+- etcdMembersDown
+
+Estas reglas permiten detectar problemas de:
+
+- disponibilidad
+- sincronización del clúster
+- errores en configuración
+- fallos de envío de alertas
+
+### Evidencia de reglas en Prometheus
+
+![Reglas Prometheus](evidencias/reglas_prometheus.png)
+
+---
+
+## Targets monitoreados por Prometheus
+
+Prometheus utiliza el mecanismo de **scraping** para recolectar métricas de diferentes servicios.
+
+En este laboratorio se monitorean los siguientes servicios:
+
+- Aplicación Django desplegada en Kubernetes
+- Grafana
+- Alertmanager
+- Prometheus stack components
+
+Cada servicio expone métricas mediante el endpoint: /metrics
+
+
+Prometheus consulta periódicamente estos endpoints para recolectar métricas.
+
+### Evidencia de targets activos
+
+![Targets Prometheus](evidencias/targets_prometheus.png)
+
+En la evidencia se puede observar que los targets se encuentran en estado **UP**, lo que indica que Prometheus está recolectando correctamente las métricas del sistema.
+
 
 # Dashboards de Grafana
 
